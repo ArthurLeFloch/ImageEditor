@@ -1,0 +1,13 @@
+services:
+  client:
+    restart: unless-stopped
+    build: ./client
+    ports:
+      - ${PORT:-8080}:80
+    depends_on:
+      - image-api
+  image-api:
+    restart: unless-stopped
+    build:
+      context: ./server/
+      dockerfile: ./Dockerfile

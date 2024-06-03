@@ -1,0 +1,53 @@
+/* CSS reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Sizes */
+html, body, #app {
+    height: 100%;
+}
+
+:root {
+    --primary-bg-1: #9c9ecf;
+    --primary-bg-2: #b8b9e0;
+    --primary-bg-3: #d4d5ef;
+
+    --primary-fg-1: #2a2b5c;
+    --primary-fg-2: #5a5b7c;
+    --primary-fg-3: #7a7b9c;
+
+    --correct-color: #238636;
+    --correct-hover-color: #2f9e44;
+    --incorrect-color: #c53030;
+}
+
+body {
+    font-family: sans-serif;
+    line-height: 1.5;
+    color: black;
+
+    --editor-action-size: 60px;
+    --editor-action-details-size: 200px;
+
+    --viewer-status-size: 40px;
+}
+
+body.dark {
+    color: white;
+
+    --primary-bg-1: #0c0f11;
+    --primary-bg-2: #141a21;
+    --primary-bg-3: #1c252a;
+
+    --primary-fg-1: #a0b0c0;
+    --primary-fg-2: #667788;
+    --primary-fg-3: #4d5e6b;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+}
