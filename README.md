@@ -7,7 +7,7 @@ The server uses Flask, and the Vue app communicates with the server with `POST` 
 
 First, you need to clone the repository:
 ```bash
-git clone https://github.com/ArthurLeFloch/vanlife.git
+git clone git@github.com:ArthurLeFloch/ImageEditor.git
 ```
 
 The following isn't required if you plan to use docker only.
