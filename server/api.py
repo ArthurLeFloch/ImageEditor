@@ -8,7 +8,7 @@ import skimage
 import io
 import sys
 
-from utils import legofier, sobel, convolution, grayscale
+from utils import legofier, sobel, convolution, grayscale, segment
 
 app = Flask(__name__)
 CORS(app)
@@ -19,6 +19,7 @@ MAX_PIXELS = 4096 * 4096
 MAX_KERNEL_SIZE = 7
 MAX_BILATERAL_KERNEL_SIZE = 11
 MAX_LEGOFY_SIZE = 1000
+MAX_SEGMENTS = 1000000
 DEBUG = True
 
 if len(sys.argv) > 1:
@@ -273,6 +274,30 @@ def api_legofy():
 
     return return_image(image)
 
+
+@app.route('/segment', methods=['POST'])
+@cross_origin()
+def api_segment():
+    image = get_image()
+    if is_too_big(image):
+        return f'Image must have less than {MAX_PIXELS} pixels', 400
+
+    color = get_form_data('color', str)
+    n = get_form_data('n', int)
+    if is_form_invalid(color, n):
+        return 'Invalid form data', 400
+
+    if n > MAX_SEGMENTS:
+        return f'Number of segments must be less than {MAX_SEGMENTS}', 400
+
+    if color == 'average':
+        image = segment.average_segment(image, n)
+    elif color == 'center':
+        image = segment.center_segment(image, n)
+    else:
+        return 'Invalid segment type', 400
+
+    return return_image(image)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=PORT, debug=DEBUG)

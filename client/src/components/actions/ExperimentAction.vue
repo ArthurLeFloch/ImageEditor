@@ -24,6 +24,16 @@ function legofy() {
     height: legofyHeight.value
   });
 }
+
+const colorCalculation = ref('none');
+const sectionCount = ref(null);
+
+function segment() {
+  fetchImage('segment', {
+    color: colorCalculation.value,
+    n: sectionCount.value
+  });
+}
 </script>
 
 <template>
@@ -38,6 +48,18 @@ function legofy() {
       <input type="number" placeholder="Width" v-model="legofyWidth" min="0"/>
       <input type="number" placeholder="Height" v-model="legofyHeight" min="0"/>
     </InputsBlock>
+  </TransformSection>
+
+  <TransformSection title="Segment" info="Segment your image into regions of the same color">
+    <InputsBlock :onClick="() => segment()" :isValid="colorCalculation !== 'none' && !!sectionCount">
+      <select v-model="colorCalculation">
+        <option selected disabled value="none">Calculation...</option>
+        <option value="average">Average</option>
+        <option value="center">Center</option>
+      </select>
+      <input type="number" placeholder="Sections" v-model="sectionCount" min="0"/>
+    </InputsBlock>
+
   </TransformSection>
 </template>
 
