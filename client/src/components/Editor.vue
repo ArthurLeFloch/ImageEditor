@@ -105,7 +105,7 @@ function handleDrop(event) {
 function downloadImage() {
   const a = document.createElement('a');
   a.href = shownImage.value.url;
-  let name = shownImage.metadata.value.name;
+  let name = shownImage.value.metadata.name;
   if (name.includes('.'))
     name = name.substring(0, name.lastIndexOf('.'));
   a.download = `${name}_edited.png`;

@@ -1,6 +1,6 @@
 # ImageEditor
 
-VueJS website made to regroup some image processing methods learnt in image processing courses.
+Vue.js website made to regroup some image processing methods learnt in image processing courses.
 The server uses Flask, and the Vue app communicates with the server with `POST` requests.
 
 ## Installation
