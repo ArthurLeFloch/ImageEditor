@@ -43,3 +43,4 @@ cd server && python3 api.py
 sudo docker compose build
 sudo PORT=3000 docker compose up -d # Default port is 8080
 ```
+
